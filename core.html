@@ -1,0 +1,98 @@
+<html>
+
+
+
+<head>
+<h1>Core Workout</h1>
+ <link rel="stylesheet" type="text/css"
+href="css/css.css" />
+
+	<script>
+
+minutesToCount = 10;
+
+function startclock() {
+
+  if (minutesToCount!=0) {
+    finalTime = new Date();
+    minutesEnd = finalTime.getMinutes() + minutesToCount;
+    finalTime.setMinutes(minutesEnd, finalTime.getSeconds(), finalTime.getMilliseconds());
+    minutesToCount = 0;
+  }
+
+  currentTime = new Date();
+  milliSecLeft = finalTime.getTime() - currentTime.getTime();
+  currentTime.setTime(milliSecLeft);
+
+  //Calculate and format the time elements
+  minutes = currentTime.getMinutes();
+  if (minutes < 10) { minutes = '0' + minutes; }
+  seconds = currentTime.getSeconds();
+  if (seconds < 10) { seconds = '0' + seconds; }
+  milliseconds = currentTime.getMilliseconds();
+
+  //Display the time left
+  timeLeftText = minutes + ':' + seconds + ':' + milliseconds;
+  document.getElementById('timeLeft').innerHTML = timeLeftText;
+
+  //Recall the function if there is time left - or display end time
+  if (milliSecLeft > 0) {
+    setTimeout("startclock()",10);
+  } else {
+    document.getElementById('timeLeft').innerHTML = '00:00:000';
+  }
+
+
+
+}
+function setWorkouts(){
+	var elements = document.getElementsByTagName('span');
+	for (var i = 1; i < elements.length; i++) {
+		var workouts = ['plank', 'crunches', 'sit ups','bicycle','right side plank', 'left side plank','scissors'];
+		var randomWorkout = workouts[Math.floor(Math.random() * workouts.length)];
+	    elements[i].innerHTML = randomWorkout;
+	}
+}
+</script>
+</head>
+<body onLoad="setWorkouts()">
+
+<style>
+	body{
+	 font-family:'Impact';
+	 background-color: #66ccff
+}
+color:(89, 214, 231);
+
+  </style>
+  Time Left: <span id="timeLeft"></span>
+<br><br>
+<button onclick="startclock();">Start</button>
+
+
+
+
+
+
+<p>0:00 to 1:40 <span></span></p>
+<p>1:40 to 2:00 rest</p>
+<p>2:00 to 3:40 <span></span></p>
+<p>3:40 to 4:00 rest</p>
+<p>4:00 to 5:40 <span></span></p>
+<p>5:40 to 6:00 rest</p>
+<p>6:00 to 7:40 <span></span></p>
+<p>7:40 to 8:00 rest</p>
+<p>8:00 to 9:40 <span></span></p>
+<p>9:40 to 10:00 rest</p>
+
+
+  </style>
+
+</body>
+
+
+
+</html>
+
+
+
